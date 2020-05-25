@@ -1,5 +1,4 @@
 <script>
-import Vue from 'vue'
 import axios from 'axios'
 
 // TODO: values for testing needs to be changed on pagination
@@ -9,14 +8,14 @@ const pageSize = '?pageSize=20'
 const url = 'https://api.elderscrollslegends.io/v1/cards'
 const params = pageSize + pageNum
 
-console.log('URL: ' + url)
-
-Vue.component('cards', {
+export default {
+  props: [
+    'cards'
+  ],
   data () {
     return {
-      cards: null,
       errors: [],
-      loading: false
+      loading: true
     }
   },
   mounted () {
@@ -26,22 +25,15 @@ Vue.component('cards', {
         console.log('response: ' + response)
         this.cards = response.data
         console.log('getCards: ' + response.data)
-      }).02
+      })
       .catch(error => {
         console.log(error)
         this.errors.push(error)
       })
       .finally(() => {
-      // this.loading = false
+        this.loading = false
       })
   }
-})
-
-export default {
-  name: 'CardsMain',
-  props: [
-    'cards'
-  ]
 }
 </script>
 
