@@ -26,7 +26,7 @@ Vue.component('cards', {
         console.log('response: ' + response)
         this.cards = response.data
         console.log('getCards: ' + response.data)
-      })
+      }).02
       .catch(error => {
         console.log(error)
         this.errors.push(error)
