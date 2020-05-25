@@ -1,17 +1,16 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <CardsMain msg="This is the ElderScroll Cards Main page Application"/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import CardsMain from './views/cards/CardsMain.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    CardsMain
   }
 }
 </script>
