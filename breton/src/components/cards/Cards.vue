@@ -1,7 +1,7 @@
 <template>
   <div id="cards">
     <div class="md-layout md-gutter md-alignment-center"
-        v-infinite-scroll="this.$store.getCards"
+        v-infinite-scroll="this.getCards"
         infinite-scroll-disabled="busy"
         infinite-scroll-distance="12"
       >
@@ -29,16 +29,26 @@ export default {
   props: {
     type: String
   },
-  data () {
-    return {}
-  },
+  data: () => ({
+    cardName: null
+  }),
   components: {
     ProgressSpinnerIndeterminate
   },
-  beforeMount () {
-    // console.log(this.$store) IF "name" -- searchCardsByName
-    this.$store.dispatch('getCards') // dispatch loading
+  methods: {
+    getCards: function () {
+      if (this.cardName || this.cardName !== '') {
+        cardsMixin.searchCardsByName(this.cardName)
+      } else {
+        cardsMixin.getCards() // dispatch loading
+      }
+    }
+  },
+  created () {
+    this.cardName = this.$router.params.cardName
+    this.getCards()
   }
+
 }
 </script>
 

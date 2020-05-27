@@ -3,9 +3,8 @@
     <md-toolbar>
       <md-button class="md-icon-button" @click="showNavigation = true">
         <span>MENU</span>
-      </md-button>
+      </md-button><CardNameSearchForm/>
     </md-toolbar>
-    <CardNameSearchForm/>
     <md-drawer :md-active.sync="showNavigation" md-swipeable>
       <md-toolbar class="md-transparent" md-elevation="0">
         <span class="md-title">Elder Scroll Cards</span>
