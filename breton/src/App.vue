@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import CardsMain from './views/cards/CardsMain.vue'
+import CardsMain from '@/views/CardsMain.vue'
 
 export default {
   name: 'App',
@@ -16,12 +16,13 @@ export default {
 </script>
 
 <style lang="scss">
+@import "./assets/sass/global.sass";
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  color: #ffffff;
+  background-color: #000000;
 }
 </style>
