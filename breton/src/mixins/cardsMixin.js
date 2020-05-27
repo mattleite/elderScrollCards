@@ -1,4 +1,3 @@
-import Vue from 'vue'
 import axios from 'axios'
 import querystring from 'querystring'
 import store from '@/store'
@@ -7,9 +6,7 @@ import store from '@/store'
 
 axios.defaults.baseURL = 'https://api.elderscrollslegends.io/v1/cards'
 
-Vue.mixin({
-  name: 'cardsMixin',
-  store: store,
+export default {
   actions: {
     async getCards (page) {
       const params = {
@@ -37,4 +34,4 @@ Vue.mixin({
       })
     }
   }
-})
+}

@@ -21,7 +21,7 @@
 
 <script>
 import ProgressSpinnerIndeterminate from '@/components/loadSpinner'
-import { cardsMixin } from '@/mixins/cardsMixin'
+import cardsMixin from '@/mixins/cardsMixin'
 
 export default {
   name: 'Cards',
@@ -30,7 +30,7 @@ export default {
     type: String
   },
   data () {
-
+    return {}
   },
   components: {
     ProgressSpinnerIndeterminate
