@@ -1,5 +1,13 @@
+@import url(https://fonts.googleapis.com/css?family=EB+Garamond:400,700)
+
 body
   background-color: #000000
+
+@for $i from 1 through 6
+    h#{$i}
+      font-family: "EB Garamond", "Open Sans", sans-serif
+      text-shadow: 0 0 6px rgba(0,0,0,.6)
+      color: #c5ac59
 
 label
   font-size: 12px
@@ -12,7 +20,7 @@ input, select
 a
   color: #666666
   font-size: 12px
-  padding: 6px !important
+  padding: 6px
   &:hover
     color: #182F3F
     text-decoration: underline

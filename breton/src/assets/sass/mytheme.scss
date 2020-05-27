@@ -1,0 +1,20 @@
+@import "~vue-material/dist/theme/engine"; // Import the theme engine
+
+@include md-register-theme(
+    "default", 
+    (
+        primary: md-get-palette-color(bluegrey, 800), // The primary color of your application
+        accent: md-get-palette-color(grey, 400), // The accent or secondary color
+        // background: md-get-palette-color(grey, 800),
+        theme: dark // This can be dark or light
+    )
+);
+
+@import "~vue-material/dist/components/MdCard/theme";
+@import "~vue-material/dist/components/MdButton/theme";
+@import "~vue-material/dist/components/MdToolbar/theme";
+@import "~vue-material/dist/components/MdTooltip/theme";
+@import "~vue-material/dist/components/MdList/theme";
+@import "~vue-material/dist/components/MdDrawer/theme";
+@import "~vue-material/dist/components/MdIcon/theme";
+@import "~vue-material/dist/components/MdProgress/theme";
