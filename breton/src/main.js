@@ -11,6 +11,7 @@ import './registerServiceWorker'
 
 Vue.use(infiniteScroll)
 Vue.use(VueMaterial)
+
 // Vue.use(VeeValidate);
 
 Vue.config.productionTip = false

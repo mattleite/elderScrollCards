@@ -5,6 +5,7 @@
         <span>MENU</span>
       </md-button>
     </md-toolbar>
+    <CardNameSearchForm/>
     <md-drawer :md-active.sync="showNavigation" md-swipeable>
       <md-toolbar class="md-transparent" md-elevation="0">
         <span class="md-title">Elder Scroll Cards</span>
@@ -22,9 +23,13 @@
 </template>
 
 <script>
+import CardNameSearchForm from '@/components/cardNameSearch.vue'
 
 export default {
   name: 'toolbar',
+  components: {
+    CardNameSearchForm
+  },
   data: () => {
     return {
       showNavigation: false

@@ -1,39 +1,40 @@
-const axios = require('axios')
+import Vue from 'vue'
+import axios from 'axios'
+import querystring from 'querystring'
+import store from '@/store'
 
-const querystring = require('querystring')
-const apiUrl = 'https://api.elderscrollslegends.io/v1/cards'
+// import { createStore } from 'vuex-extensions'
 
-export const cardsMixin = {
-  methods: {
-    getCards (page = 1) {
+axios.defaults.baseURL = 'https://api.elderscrollslegends.io/v1/cards'
+
+Vue.mixin({
+  name: 'cardsMixin',
+  store: store,
+  actions: {
+    async getCards (page) {
       const params = {
-        page,
+        page: page,
         pageSize: 20
       }
       const queryString = querystring.stringify(params)
-      return axios.get(`${apiUrl}/?${queryString}`)
+      axios.get(`/?${queryString}`).then((response) => {
+        store.commit('updateCards', response.data)
+        store.commit('changeLoadingState', false)
+        store.commit('updatePageCount')
+      })
     },
-    searchCardsByName(name, page = 1){
+    async searchCardsByName (name, page) {
       const params = {
-        name,
-        page,
+        name: name,
+        page: page,
         pageSize: 20
       }
       const queryString = querystring.stringify(params)
-      return axios.get(`${apiUrl}/?${queryString}`)
+      axios.get(`/?${queryString}`).then((response) => {
+        store.commit('updateCards', response.data)
+        store.commit('changeLoadingState', false)
+        store.commit('updatePageCount')
+      })
     }
-      //,
-    // searchCards(data) {
-    //     let params = Object.assign({}, data);
-    //     params['key'] = apikey;
-    //     params['pageSize'] = 20;
-    //     Object.keys(params).forEach(key => {
-    //         if (!params[key]) {
-    //             delete params[key];
-    //         }
-    //     })
-    //     const queryString = querystring.stringify(params);
-    //     return axios.get(`${apiUrl}/?${queryString}`);
-    // }
   }
-}
+})
