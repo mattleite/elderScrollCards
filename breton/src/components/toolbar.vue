@@ -3,7 +3,7 @@
     <md-toolbar>
       <md-button class="md-icon-button" @click="showNavigation = true">
         <span>MENU</span>
-      </md-button><CardNameSearchForm/>
+      </md-button>
     </md-toolbar>
     <md-drawer :md-active.sync="showNavigation" md-swipeable>
       <md-toolbar class="md-transparent" md-elevation="0">
@@ -15,17 +15,21 @@
             <span class="md-list-item-text">Home</span>
           </router-link>
         </md-list-item>
+        <md-list-item>
+           <CardNameSearchForm/>
+        </md-list-item>
       </md-list>
     </md-drawer>
-    <div id="search"></div>
   </div>
 </template>
 
 <script>
 import CardNameSearchForm from '@/components/cardNameSearch.vue'
+import cardsMixin from '@/mixins/cardsMixin'
 
 export default {
   name: 'toolbar',
+  mixins: [cardsMixin],
   components: {
     CardNameSearchForm
   },
@@ -42,7 +46,9 @@ export default {
   text-align: center;
 }
 form {
-  width: 95vw;
-  margin: 0 auto;
+  margin: auto;
+}
+.md-list-item-text{
+  color: #fff;
 }
 </style>

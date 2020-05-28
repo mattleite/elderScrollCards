@@ -23,6 +23,9 @@ export default {
         store.commit('updatePageCount')
       })
     },
+    dumpCards: async function () {
+      store.commit('dumpCards')
+    },
     loadMoreCards: async function (name, page) {
       let cards = []
       const params = {

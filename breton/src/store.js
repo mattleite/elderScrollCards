@@ -21,6 +21,10 @@ export default new Vuex.Store({
     },
     addCard (state, card) {
       state.cards.push(card)
+    },
+    dumpCards (state) {
+      state.cards = []
+      state.page = 1
     }
   }
 })

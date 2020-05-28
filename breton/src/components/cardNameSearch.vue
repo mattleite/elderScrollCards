@@ -4,7 +4,6 @@
         <md-field :class="getValidationClass('form.cardName')">
             <label>Search Cards by Name</label>
             <md-input v-model="form.cardName"></md-input>
-            <span class="md-helper-text">Search for Elder Scrolls Cards by name</span>
             <span class="md-error" v-if="!$v.form.cardName.required">The Card Name is required</span>
         </md-field>
         <md-card-actions>
@@ -20,10 +19,11 @@ import {
   required,
   minLength
 } from 'vuelidate/lib/validators'
+import cardsMixin from '@/mixins/cardsMixin'
 
 export default {
   name: 'CardNameSearchForm',
-  mixins: [validationMixin],
+  mixins: [validationMixin, cardsMixin],
   data () {
     return {
       form: {
@@ -54,9 +54,14 @@ export default {
       this.$v.$reset()
       this.form.cardName = null
     },
-    searchCard () {
-      this.sending = true
-      this.$router.push(`/card-name-search/${this.form.cardName}`)
+    async searchCard () {
+      if (this.$route.params.cardName !== this.form.cardName) {
+        this.dumpCards()
+        this.sending = true
+        await this.$router.push(`/card-name-search/${this.form.cardName}`).then(() => {
+          this.getCards(this.form.cardName, this.$store.state.page)
+        })
+      }
     },
     validateUser () {
       this.$v.$touch()
@@ -70,5 +75,15 @@ export default {
 </script>
 
 <style scoped lang="scss">
+
+.md-button{
+    border: 1px solid #fff;
+    color: #fff !important;
+}
+.md-input{
+    border: 1px solid #000;
+    color: #fff;
+    margin-right:15px;
+}
 
 </style>
