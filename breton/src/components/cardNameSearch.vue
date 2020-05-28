@@ -56,14 +56,7 @@ export default {
     },
     searchCard () {
       this.sending = true
-      this.$router.push(`/card-name-search?cardName=${this.form.cardName}`)
-
-    // Instead of this timeout, here you can call your API
-    //   window.setTimeout(() => {
-    //     this.cardName = `${this.form.cardName}`
-    //     this.sending = false
-    //     this.clearForm()
-    //   }, 1500)
+      this.$router.push(`/card-name-search/${this.form.cardName}`)
     },
     validateUser () {
       this.$v.$touch()

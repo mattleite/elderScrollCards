@@ -18,6 +18,9 @@ export default new Vuex.Store({
     },
     updatePageCount (state) {
       state.page++
+    },
+    addCard (state, card) {
+      state.cards.push(card)
     }
   }
 })

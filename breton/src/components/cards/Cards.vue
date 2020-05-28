@@ -1,11 +1,11 @@
 <template>
   <div id="cards">
     <div class="md-layout md-gutter md-alignment-center"
-        v-infinite-scroll="getAllCards"
+        v-infinite-scroll="loadMore"
         infinite-scroll-disabled="busy"
         infinite-scroll-distance="12"
       >
-      <md-card v-for="card in cards" :key="card.id" class="card md-layout-item md-xlarge-size-20 md-large-size-25 md-medium-size-33 md-small-size-50 md-xsmall-size-100">
+      <md-card v-for="card in this.$store.state.cards" :key="card.id" class="card md-layout-item md-xlarge-size-20 md-large-size-25 md-medium-size-33 md-small-size-50 md-xsmall-size-100">
         <md-card-media><img :src="card.imageUrl"/></md-card-media>
         <div class="card-info">
           <h3 class="name info"><span class="title">Name: </span><span class='content'>{{ card.name }}</span></h3>
@@ -29,8 +29,7 @@ export default {
   data () {
     return {
       cardName: null,
-      cards: this.$store.cards,
-      showLoading: this.$store.state.loading
+      page: 1
     }
   },
   components: {
@@ -38,24 +37,22 @@ export default {
   },
   methods: {
     async getAllCards () {
-      console.log('Cards.vue - this.cardName: ' + this.cardName)
-      if (this.cardName || this.cardName !== '') {
-        await this.searchCardsByName(this.cardName).then(
-          console.log('Cards.vue getAllCards - searchCardsByName(): '))
+      if (this.$store.state.cards.length <= 0) {
+        await this.getCards(this.$route.params.cardName, this.$store.state.page)
       } else {
-        await this.getCards().then(
-          console.log('Cards.vue getAllCards - getCards(): '))
+        await this.loadMoreCards(this.$route.params.cardName, this.$store.state.page)
       }
+    },
+    async loadMore () {
+      this.loadMoreCards(this.$route.params.cardName, this.$store.state.page)
     }
   },
-  beforeMount () {
-    console.log('router.params.cardName: ' + this.$route.params.cardName)
+  beforemount () {
     if (this.$route.params.cardName !== undefined) {
       this.cardName = this.$route.params.cardName
-      this.getAllCards()
     }
+    this.getAllCards()
   }
-
 }
 </script>
 
