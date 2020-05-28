@@ -1,11 +1,12 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import { createStore } from 'vuex-extensions'
 Vue.use(Vuex)
 
-export default new Vuex.Store({
+export default createStore(Vuex.Store, {
   state: {
     cards: [],
-    page: null,
+    page: 1,
     loading: true,
     pageSize: 20
   },

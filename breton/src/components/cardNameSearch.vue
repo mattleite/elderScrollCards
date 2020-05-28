@@ -59,7 +59,9 @@ export default {
         this.dumpCards()
         this.sending = true
         await this.$router.push(`/card-name-search/${this.form.cardName}`).then(() => {
-          this.getCards(this.form.cardName, this.$store.state.page)
+          this.loadMoreCards(this.form.cardName, this.$store.state.page).then(() => {
+            this.sending = false
+          })
         })
       }
     },

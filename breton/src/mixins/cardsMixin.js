@@ -8,26 +8,11 @@ const apiUrl = 'https://api.elderscrollslegends.io/v1/cards'
 
 export default {
   methods: {
-    getCards: async function (name, page) {
-      const params = {
-        pageSize: 20,
-        page: page
-      }
-      if (name) {
-        params.name = name
-      }
-      const queryString = querystring.stringify(params)
-      axios.get(`${apiUrl}/?${queryString}`).then(response => {
-        store.commit('updateCards', response.data.cards)
-        store.commit('changeLoadingState', false)
-        store.commit('updatePageCount')
-      })
-    },
-    dumpCards: async function () {
+    async dumpCards () {
       store.commit('dumpCards')
     },
-    loadMoreCards: async function (name, page) {
-      let cards = []
+    async loadMoreCards (name, page) {
+      let cardsTemp = []
       const params = {
         pageSize: 20,
         page: page
@@ -37,9 +22,9 @@ export default {
       }
       const queryString = querystring.stringify(params)
       axios.get(`${apiUrl}/?${queryString}`).then(response => {
-        cards = response.data.cards
+        cardsTemp = response.data.cards
       }).then(() => {
-        cards.forEach(card => {
+        cardsTemp.forEach(card => {
           store.commit('addCard', card)
         })
         store.commit('changeLoadingState', false)

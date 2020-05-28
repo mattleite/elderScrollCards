@@ -15,7 +15,7 @@
         </div>
       </md-card>
     </div>
-    <div v-show="this.$store.state.loading" class="loading"><ProgressSpinnerIndeterminate/></div>
+    <div v-show="showLoading" class="loading"><ProgressSpinnerIndeterminate/></div>
   </div>
 </template>
 
@@ -29,7 +29,7 @@ export default {
   data () {
     return {
       cardName: null,
-      loadMoreEnabled: true,
+      showLoading: false,
       page: 1
     }
   },
@@ -37,29 +37,18 @@ export default {
     ProgressSpinnerIndeterminate
   },
   methods: {
-    async getAllCards () {
-      if (this.$store.state.cards.length <= 0) {
-        await this.getCards(this.$route.params.cardName, this.$store.state.page)
-      } else {
-        if (this.$route.params.cardName) {
-          this.dumpCards()
-          await this.loadMoreCards(this.$route.params.cardName, this.$store.state.page).then(() => {
-            this.loadMoreEnabled = false
-          })
-        }
-      }
-    },
     async loadMore () {
-      if (this.loadMoreEnabled) {
-        this.loadMoreCards(this.$route.params.cardName, this.$store.state.page)
-      }
+      this.showLoading = true
+      await this.loadMoreCards(this.$route.params.cardName, this.$store.state.page).then(() => {
+        this.showLoading = false
+      })
     }
   },
   beforemount () {
     if (this.$route.params.cardName !== undefined) {
       this.cardName = this.$route.params.cardName
     }
-    this.getAllCards()
+    this.loadMore()
   }
 }
 </script>

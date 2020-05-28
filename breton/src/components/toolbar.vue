@@ -11,7 +11,7 @@
       </md-toolbar>
       <md-list>
         <md-list-item>
-          <router-link to="/">
+          <router-link v-on:click.native="loadHome" to="/" :disabled="sending">
             <span class="md-list-item-text">Home</span>
           </router-link>
         </md-list-item>
@@ -35,7 +35,19 @@ export default {
   },
   data () {
     return {
-      showNavigation: false
+      showNavigation: false,
+      sending: false
+    }
+  },
+  methods: {
+    async loadHome () {
+      if (this.$route.path === '/') {
+        this.dumpCards()
+        this.sending = true
+        await this.loadMoreCards(null, 1).then(() => {
+          this.sending = false
+        })
+      }
     }
   }
 }
