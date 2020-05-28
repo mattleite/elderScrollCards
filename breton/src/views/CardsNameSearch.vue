@@ -15,7 +15,6 @@ export default {
   name: 'CardsMain',
   components: {
     Toolbar,
-    // SearchName,
     Cards
   }
 }

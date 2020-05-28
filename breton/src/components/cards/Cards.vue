@@ -1,11 +1,11 @@
 <template>
   <div id="cards">
     <div class="md-layout md-gutter md-alignment-center"
-        v-infinite-scroll="this.getCards"
+        v-infinite-scroll="getAllCards"
         infinite-scroll-disabled="busy"
         infinite-scroll-distance="12"
       >
-      <md-card v-for="card in this.$store.cards" :key="card.id" class="card md-layout-item md-xlarge-size-20 md-large-size-25 md-medium-size-33 md-small-size-50 md-xsmall-size-100">
+      <md-card v-for="card in cards" :key="card.id" class="card md-layout-item md-xlarge-size-20 md-large-size-25 md-medium-size-33 md-small-size-50 md-xsmall-size-100">
         <md-card-media><img :src="card.imageUrl"/></md-card-media>
         <div class="card-info">
           <h3 class="name info"><span class="title">Name: </span><span class='content'>{{ card.name }}</span></h3>
@@ -26,27 +26,34 @@ import cardsMixin from '@/mixins/cardsMixin'
 export default {
   name: 'Cards',
   mixins: [cardsMixin],
-  props: {
-    type: String
+  data () {
+    return {
+      cardName: null,
+      cards: this.$store.cards,
+      showLoading: this.$store.state.loading
+    }
   },
-  data: () => ({
-    cardName: null
-  }),
   components: {
     ProgressSpinnerIndeterminate
   },
   methods: {
-    getCards: function () {
+    async getAllCards () {
+      console.log('Cards.vue - this.cardName: ' + this.cardName)
       if (this.cardName || this.cardName !== '') {
-        cardsMixin.searchCardsByName(this.cardName)
+        await this.searchCardsByName(this.cardName).then(
+          console.log('Cards.vue getAllCards - searchCardsByName(): '))
       } else {
-        cardsMixin.getCards() // dispatch loading
+        await this.getCards().then(
+          console.log('Cards.vue getAllCards - getCards(): '))
       }
     }
   },
-  created () {
-    this.cardName = this.$router.params.cardName
-    this.getCards()
+  beforeMount () {
+    console.log('router.params.cardName: ' + this.$route.params.cardName)
+    if (this.$route.params.cardName !== undefined) {
+      this.cardName = this.$route.params.cardName
+      this.getAllCards()
+    }
   }
 
 }

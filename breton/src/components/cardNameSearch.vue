@@ -1,9 +1,9 @@
 <template>
   <div>
     <form novalidate class="md-layout" @submit.prevent="validateUser">
-        <md-field :class="getValidationClass('cardName')">
+        <md-field :class="getValidationClass('form.cardName')">
             <label>Search Cards by Name</label>
-            <md-input v-model="cardName"></md-input>
+            <md-input v-model="form.cardName"></md-input>
             <span class="md-helper-text">Search for Elder Scrolls Cards by name</span>
             <span class="md-error" v-if="!$v.form.cardName.required">The Card Name is required</span>
         </md-field>
@@ -24,12 +24,14 @@ import {
 export default {
   name: 'CardNameSearchForm',
   mixins: [validationMixin],
-  data: () => ({
-    form: {
-      cardName: null
-    },
-    sending: false
-  }),
+  data () {
+    return {
+      form: {
+        cardName: null
+      },
+      sending: false
+    }
+  },
   validations: {
     form: {
       cardName: {
@@ -56,12 +58,12 @@ export default {
       this.sending = true
       this.$router.push(`/card-name-search?cardName=${this.form.cardName}`)
 
-      // Instead of this timeout, here you can call your API
-      window.setTimeout(() => {
-        this.cardName = `${this.form.cardName}`
-        this.sending = false
-        this.clearForm()
-      }, 1500)
+    // Instead of this timeout, here you can call your API
+    //   window.setTimeout(() => {
+    //     this.cardName = `${this.form.cardName}`
+    //     this.sending = false
+    //     this.clearForm()
+    //   }, 1500)
     },
     validateUser () {
       this.$v.$touch()

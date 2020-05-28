@@ -14,7 +14,7 @@ export default new Router({
       component: CardsMain
     },
     {
-      path: '/card-name-search',
+      path: '/card-name-search/:cardName',
       name: 'card-name-search',
       component: CardsNameSearch
     }

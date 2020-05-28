@@ -4,7 +4,7 @@ import store from '@/store'
 
 // import { createStore } from 'vuex-extensions'
 
-axios.defaults.baseURL = 'https://api.elderscrollslegends.io/v1/cards'
+const apiUrl = 'https://api.elderscrollslegends.io/v1/cards'
 
 export default {
   methods: {
@@ -14,9 +14,9 @@ export default {
         pageSize: 20
       }
       const queryString = querystring.stringify(params)
-      axios.get(`/?${queryString}`).then((response) => {
-        console.log('RESPONSE: ' + response)
-        store.commit('updateCards', response.data)
+      axios.get(`${apiUrl}/?${queryString}`).then((response) => {
+        console.log('RESPONSE: ' + response.data.cards.toString())
+        store.commit('updateCards', response.data.cards)
         store.commit('changeLoadingState', false)
         store.commit('updatePageCount')
       })
@@ -28,8 +28,9 @@ export default {
         pageSize: 20
       }
       const queryString = querystring.stringify(params)
-      axios.get(`/?${queryString}`).then((response) => {
-        store.commit('updateCards', response.data)
+      axios.get(`${apiUrl}/?${queryString}`).then((response) => {
+        console.log('RESPONSE: ' + response.data.cards.toString())
+        store.commit('updateCards', response.data.cards)
         store.commit('changeLoadingState', false)
         store.commit('updatePageCount')
       })

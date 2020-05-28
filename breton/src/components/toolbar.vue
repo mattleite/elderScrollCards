@@ -29,7 +29,7 @@ export default {
   components: {
     CardNameSearchForm
   },
-  data: () => {
+  data () {
     return {
       showNavigation: false
     }
