@@ -2,8 +2,6 @@ import axios from 'axios'
 import querystring from 'querystring'
 import store from '@/store'
 
-// import { createStore } from 'vuex-extensions'
-
 const apiUrl = 'https://api.elderscrollslegends.io/v1/cards'
 
 export default {

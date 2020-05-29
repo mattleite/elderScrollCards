@@ -7,7 +7,6 @@
 </template>
 
 <script>
-// TODO: breakout Cards to individual component
 import Toolbar from '@/components/toolbar'
 import Cards from '@/components/cards/Cards'
 
@@ -21,7 +20,7 @@ export default {
 
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
+<!-- Include "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 
 h1 {
