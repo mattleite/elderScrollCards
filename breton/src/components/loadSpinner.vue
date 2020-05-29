@@ -5,12 +5,6 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'ProgressSpinnerIndeterminate'
-}
-</script>
-
 <style lang="scss" scoped>
   .md-progress-spinner {
     margin: 24px;
