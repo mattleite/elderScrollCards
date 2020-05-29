@@ -24,7 +24,6 @@ import ProgressSpinnerIndeterminate from '@/components/loadSpinner'
 import cardsMixin from '@/mixins/cardsMixin'
 
 export default {
-  name: 'Cards',
   mixins: [cardsMixin],
   data () {
     return {
