@@ -1,5 +1,5 @@
 import Router from 'vue-router'
-import CardsMain from '@/views/CardsMain'
+import CardsMain from '@/views/cardsMain'
 
 export default new Router({
   mode: 'history',

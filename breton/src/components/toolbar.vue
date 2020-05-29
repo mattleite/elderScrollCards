@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import CardNameSearchForm from '@/components/cardNameSearch.vue'
+import CardNameSearchForm from '@/components/cardNameSearch'
 import cardsMixin from '@/mixins/cardsMixin'
 
 export default {
