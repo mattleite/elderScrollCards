@@ -8,7 +8,7 @@ export default createStore(Vuex.Store, {
     apiUrl: 'https://api.elderscrollslegends.io/v1/cards',
     cards: [],
     page: 1,
-    loading: true,
+    loading: false,
     pageSize: 20
   },
   getters: {

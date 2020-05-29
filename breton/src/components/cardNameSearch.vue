@@ -22,7 +22,6 @@ import {
 import cardsMixin from '@/mixins/cardsMixin'
 
 export default {
-  name: 'CardNameSearchForm',
   mixins: [validationMixin, cardsMixin],
   data () {
     return {
