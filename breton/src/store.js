@@ -1,9 +1,9 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import { createStore } from 'vuex-extensions'
+
 Vue.use(Vuex)
 
-export default createStore(Vuex.Store, {
+export default new Vuex.Store({
   state: {
     apiUrl: 'https://api.elderscrollslegends.io/v1/cards',
     cards: [],
