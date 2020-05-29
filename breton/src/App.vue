@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import CardsMain from '@/views/CardsMain.vue'
+import CardsMain from '@/views/cardsMain'
 
 export default {
   name: 'App',

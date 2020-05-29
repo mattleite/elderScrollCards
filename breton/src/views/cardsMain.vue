@@ -12,7 +12,6 @@ import Toolbar from '@/components/toolbar'
 import Cards from '@/components/cards/cards'
 
 export default {
-  name: 'CardsMain',
   components: {
     Toolbar,
     Cards
