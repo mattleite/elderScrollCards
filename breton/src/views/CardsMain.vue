@@ -9,7 +9,7 @@
 <script>
 // TODO: breakout Cards to individual component
 import Toolbar from '@/components/toolbar'
-import Cards from '@/components/cards/Cards'
+import Cards from '@/components/cards/cards'
 
 export default {
   name: 'CardsMain',
