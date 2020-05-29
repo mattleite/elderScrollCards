@@ -2,10 +2,6 @@ import axios from 'axios'
 import querystring from 'querystring'
 import store from '@/store'
 
-// import { createStore } from 'vuex-extensions'
-
-const apiUrl = 'https://api.elderscrollslegends.io/v1/cards'
-
 export default {
   methods: {
     async dumpCards () {
@@ -15,11 +11,12 @@ export default {
       let cardsTemp = []
       const params = {
         pageSize: 20,
-        page: page
+        page
       }
       if (name) {
         params.name = name
       }
+      const apiUrl = this.$store.getters.apiUrl
       store.commit('changeLoadingState', true)
       const queryString = querystring.stringify(params)
       axios.get(`${apiUrl}/?${queryString}`).then(response => {

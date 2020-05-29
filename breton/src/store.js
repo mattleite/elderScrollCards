@@ -5,10 +5,16 @@ Vue.use(Vuex)
 
 export default createStore(Vuex.Store, {
   state: {
+    apiUrl: 'https://api.elderscrollslegends.io/v1/cards',
     cards: [],
     page: 1,
     loading: false,
     pageSize: 20
+  },
+  getters: {
+    apiUrl (state) {
+      return state.apiUrl
+    }
   },
   mutations: {
     updateCards (state, cards) {
