@@ -1,9 +1,6 @@
-import Vue from 'vue'
 import Vuex from 'vuex'
-import { createStore } from 'vuex-extensions'
-Vue.use(Vuex)
 
-export default createStore(Vuex.Store, {
+export default new Vuex.Store({
   state: {
     cards: [],
     page: 1,

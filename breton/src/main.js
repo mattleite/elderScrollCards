@@ -1,5 +1,6 @@
 import Vue from 'vue'
-import App from '@/App'
+import Vuex from 'vuex'
+import App from '@/App.vue'
 import router from '@/router'
 import store from '@/store'
 import VueMaterial from 'vue-material'
@@ -15,6 +16,7 @@ Vue.use(infiniteScroll)
 Vue.use(VueMaterial)
 Vue.use(Vuelidate)
 Vue.use(Router)
+Vue.use(Vuex)
 
 Vue.config.productionTip = false
 
