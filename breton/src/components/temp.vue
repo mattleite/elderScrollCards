@@ -23,8 +23,8 @@
 
 <script>
 // TODO: breakout Cards to individual component
-import Toolbar from '@/components/toolbar.vue'
-import ProgressBarIndeterminate from '@/components/progressbar.vue'
+import Toolbar from '@/components/toolbar'
+import ProgressBarIndeterminate from '@/components/progressbar'
 import { cardsMixin } from '@/mixins/cardsMixin'
 
 export default {
