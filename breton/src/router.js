@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import CardsMain from './views/CardsMain.vue';
-//import Search from './views/Search.vue';
+import CardsMain from '@/views/CardsMain'
+
 Vue.use(Router)
 export default new Router({
   mode: 'history',
@@ -12,10 +12,10 @@ export default new Router({
       name: 'home',
       component: CardsMain
     },
-    // {
-    //   path: '/search',
-    //   name: 'search',
-    //   component: Search
-    // }
+    {
+      path: '/card-name-search/:cardName',
+      name: 'card-name-search',
+      component: CardsMain
+    }
   ]
 })

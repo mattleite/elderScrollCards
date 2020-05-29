@@ -1,5 +1,5 @@
 <template>
-  <div class="cards-main">
+  <div>
     <h1>Elder Scroll Legends</h1>
     <Toolbar/>
     <div id="cards" class="md-layout md-gutter md-alignment-center"
@@ -17,21 +17,21 @@
         </div>
       </md-card>
     </div>
-    <div v-show="showLoading" class="loading"><ProgressSpinnerIndeterminate/></div>
+    <div v-show="showLoading" class="loading"><ProgressBarIndeterminate/></div>
   </div>
 </template>
 
 <script>
 // TODO: breakout Cards to individual component
 import Toolbar from '@/components/toolbar.vue'
-import ProgressSpinnerIndeterminate from '@/components/loadSpinner.vue'
+import ProgressBarIndeterminate from '@/components/progressbar.vue'
 import { cardsMixin } from '@/mixins/cardsMixin'
 
 export default {
   name: 'CardsMain',
   components: {
     Toolbar,
-    ProgressSpinnerIndeterminate
+    ProgressBarIndeterminate
   },
   data () {
     return {
@@ -48,12 +48,6 @@ export default {
     async getAllCards () {
       this.showLoading = true
       const response = await this.getCards()
-      if (response.ok) this.showLoading = false
-      this.cards = response.data.cards
-    },
-    async getCardsByName () {
-      this.showLoading = true
-      const response = await this.searchCardsByName()
       if (response.ok) this.showLoading = false
       this.cards = response.data.cards
     },
@@ -79,11 +73,7 @@ h1 {
       color:#000
     }
 }
-.cards-main{
-  margin: auto;
-  width: 100%;
-  padding: 10px;
-}
+
 .md-layout-item {
     padding-right: 20px;
     padding-left: 20px;
@@ -91,6 +81,14 @@ h1 {
     margin: 5px 8px;
     flex-direction: column;
     transition: .3s $md-transition-stand-timing;
+
+    &:after {
+      width: 100%;
+      height: 100%;
+      display: block;
+      background: md-get-palette-color(purple, 200);
+      content: " ";
+    }
 }
 .md-card-media{
   display: inline;
@@ -105,6 +103,7 @@ h1 {
   display: inline-flex;
   text-align: left;
   margin: 5px 10px;
+  height: 4vh;
   flex-flow: row;
 
   .title{
@@ -113,6 +112,7 @@ h1 {
     display: inline-flex;
     text-align: left;
     margin: 0 10px 0 0;
+    height: 4vh;
     flex-flow: column;
   }
 
@@ -120,13 +120,11 @@ h1 {
     font-weight: bold;
     display: inline-flex;
     text-align: left;
+    height: 4vh;
     flex-flow: column;
-    width: 100%;
   }
 }
 .loading{
   width: 300px;
-  padding: 10px;
-  margin: auto;
 }
 </style>
