@@ -37,11 +37,7 @@ export default {
   },
   methods: {
     async loadMore () {
-      this.showLoading = false
-      console.log('this.$store.state.loading: ', this.$store.state.loading)
-      await this.loadMoreCards(this.$route.params.cardName, this.$store.state.page).then(() => {
-        this.showLoading = false
-      })
+      await this.loadMoreCards(this.$route.params.cardName, this.$store.state.page)
     }
   },
   beforemount () {
