@@ -7,7 +7,7 @@ export default createStore(Vuex.Store, {
   state: {
     cards: [],
     page: 1,
-    loading: true,
+    loading: false,
     pageSize: 20
   },
   mutations: {

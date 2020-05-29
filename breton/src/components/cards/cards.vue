@@ -28,7 +28,6 @@ export default {
   data () {
     return {
       cardName: null,
-      showLoading: false,
       page: 1
     }
   },
@@ -37,7 +36,9 @@ export default {
   },
   methods: {
     async loadMore () {
-      await this.loadMoreCards(this.$route.params.cardName, this.$store.state.page)
+      if (!this.$store.state.loading) {
+        await this.loadMoreCards(this.$route.params.cardName, this.$store.state.page)
+      }
     }
   },
   beforemount () {
