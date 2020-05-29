@@ -20,6 +20,7 @@ export default {
       if (name) {
         params.name = name
       }
+      store.commit('changeLoadingState', true)
       const queryString = querystring.stringify(params)
       axios.get(`${apiUrl}/?${queryString}`).then(response => {
         cardsTemp = response.data.cards

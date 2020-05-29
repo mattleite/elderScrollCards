@@ -28,7 +28,6 @@ import CardNameSearchForm from '@/components/cardNameSearch.vue'
 import cardsMixin from '@/mixins/cardsMixin'
 
 export default {
-  name: 'toolbar',
   mixins: [cardsMixin],
   components: {
     CardNameSearchForm

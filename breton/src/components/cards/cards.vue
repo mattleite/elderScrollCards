@@ -15,7 +15,7 @@
         </div>
       </md-card>
     </div>
-    <div v-show="showLoading" class="loading"><ProgressSpinnerIndeterminate/></div>
+    <div v-show="this.$store.state.loading" class="loading"><ProgressSpinnerIndeterminate/></div>
   </div>
 </template>
 
@@ -24,7 +24,6 @@ import ProgressSpinnerIndeterminate from '@/components/loadSpinner'
 import cardsMixin from '@/mixins/cardsMixin'
 
 export default {
-  name: 'Cards',
   mixins: [cardsMixin],
   data () {
     return {
@@ -38,7 +37,8 @@ export default {
   },
   methods: {
     async loadMore () {
-      this.showLoading = true
+      this.showLoading = false
+      console.log('this.$store.state.loading: ', this.$store.state.loading)
       await this.loadMoreCards(this.$route.params.cardName, this.$store.state.page).then(() => {
         this.showLoading = false
       })
